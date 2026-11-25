@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Prato Certo: marque suas restrições e o que você gosta e veja os pratos que servem para você, com o restaurante e o preço."
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="theme-color" content="#0d0a0b" />
+    <link rel="stylesheet" href="./src/styles/fontes.css" />
+    <link rel="stylesheet" href="./src/styles/tokens.css" />
+    <link rel="stylesheet" href="./src/styles/base.css" />
+    <link rel="stylesheet" href="./src/styles/pagina.css" />
+    <link rel="stylesheet" href="./src/styles/edicao.css" />
+    <title>Prato Certo</title>
+  </head>
+  <body>
+    <!-- Atalho para quem usa teclado ou leitor de tela (RNF-02) -->
+    <a class="botao botao--primario pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="topo">
+      <a class="marca" href="#topo">
+        <img src="./favicon.svg" alt="" width="32" height="32" />
+        Prato Certo
+      </a>
+      <nav aria-label="Seções da página">
+        <ul class="topo__links">
+          <li><a href="#restricoes">Escolhas</a></li>
+          <li><a href="#sugestoes">Sugestões</a></li>
+          <li><a href="#precos">Preços</a></li>
+          <li><a href="#favoritos">Favoritos</a></li>
+          <li><a href="#historico">Histórico</a></li>
+        </ul>
+      </nav>
+      <!-- "Entrar", ou "Olá, Nome" e "Sair" (src/main.js). Vazio quando o login não está ligado. -->
+      <button type="button" class="tema" data-tema aria-label="Tema claro" aria-pressed="false">
+        <span aria-hidden="true" class="tema__sol">☀</span><span aria-hidden="true" class="tema__lua">☾</span>
+        <span class="visualmente-oculto">Tema claro</span>
+      </button>
+      <div class="topo__conta" data-conta></div>
+    </header>
+
+    <main id="conteudo" tabindex="-1">
+      <!-- 1. Capa: uma foto comum de prato, parada (sem animação). -->
+      <section class="capa" id="topo" aria-labelledby="titulo-capa">
+        <div class="capa__texto">
+          <p class="rotulo localidade"><svg aria-hidden="true" class="icone"><use href="./icons/icones.svg#pino"></use></svg>Restaurantes de Brasília</p>
+          <h1 id="titulo-capa">O que vou<br /><em>comer hoje?</em></h1>
+          <p class="capa__frase">
+            Marque suas restrições e as cozinhas de que você gosta. Descubra três sugestões para a sua próxima refeição.
+          </p>
+          <a class="botao botao--primario botao--grande" href="#restricoes">Escolher preferências</a>
+          <a class="atalho-catalogo" href="#precos">Ver cardápio</a>
+        </div>
+        <div class="capa__foto">
+          <img
+            class="foto-prato"
+            src="./img/prato/prato-espaguete.jpg"
+            alt="Prato de espaguete ao molho de tomate com rodelas de tomate e folhas de manjericão."
+            width="1080"
+            height="1080"
+            fetchpriority="high"
+          />
+        </div>
+      </section>
+
+      <div class="faixa-catalogo"><div><strong>40</strong> pratos</div><div><strong>10</strong> restaurantes</div><div><strong>10</strong> cozinhas</div></div>
+      <!-- 2. Escolhas: restrições e gostos, lado a lado no computador. -->
+      <div class="escolhas">
+        <section class="painel" id="restricoes" aria-labelledby="titulo-restricoes">
+          <h2 id="titulo-restricoes">Restrições</h2>
+          <p class="painel__dica" id="dica-restricoes">
+            O prato precisa atender a todas as restrições marcadas no catálogo.
+          </p>
+          <div
+            class="chips"
+            role="group"
+            aria-labelledby="titulo-restricoes"
+            aria-describedby="dica-restricoes"
+            data-restricoes
+          ></div>
+        </section>
+
+        <section class="painel" id="gostos" aria-labelledby="titulo-gostos">
+          <h2 id="titulo-gostos">O que você gosta</h2>
+          <p class="painel__dica" id="dica-gostos">
+            Escolha quantas quiser. Sem nenhuma marcada, todas as cozinhas participam.
+          </p>
+          <div class="chips" role="group" aria-labelledby="titulo-gostos" aria-describedby="dica-gostos" data-gostos></div>
+        </section>
+
+        <!-- Onde as escolhas ficam salvas: neste navegador, ou também na conta. -->
+        <p class="salvamento" aria-live="polite" data-salvamento></p>
+      </div>
+
+      <section class="secao sugestoes" id="sugestoes" aria-labelledby="titulo-sugestoes">
+        <div class="secao__topo">
+          <div><h2 id="titulo-sugestoes">Suas sugestões</h2><p role="status" data-sugestoes-aviso></p></div>
+          <button type="button" class="botao botao--primario" data-gerar>Gerar sugestões</button>
+        </div>
+        <p class="nota-alimentar"><svg aria-hidden="true" class="icone"><use href="./icons/icones.svg#alerta"></use></svg>
+          Dados fictícios. Os filtros não garantem segurança alimentar. Confirme ingredientes, preparo e risco de contaminação cruzada com o restaurante.</p>
+        <div class="grade-cartoes" data-cartoes></div>
+      </section>
+      <!-- 3. Restaurantes e preços -->
+      <section class="precos" id="precos" aria-labelledby="titulo-precos">
+        <p class="rotulo">Cardápio completo</p>
+        <h2 id="titulo-precos">Restaurantes e preços</h2>
+
+        <div class="controles">
+          <div class="controle">
+            <label for="onde">Onde você está?</label>
+            <div class="controle__linha">
+              <select id="onde" data-onde>
+                <option value="">Escolha um bairro</option>
+              </select>
+              <button type="button" class="botao" data-localizar>
+                <svg class="icone" aria-hidden="true"><use href="./icons/icones.svg#localizacao"></use></svg>
+                Usar minha localização
+              </button>
+            </div>
+            <p class="controle__dica" aria-live="polite" data-dica-local></p>
+          </div>
+
+          <div class="controle">
+            <span class="controle__rotulo" id="rotulo-ordem">Ordenar por</span>
+            <div class="chips chips--ordem" role="group" aria-labelledby="rotulo-ordem" data-ordem></div>
+          </div>
+        </div>
+
+        <div class="resultado">
+          <p class="resultado__resumo" aria-live="polite" data-resumo></p>
+          <button type="button" class="botao" data-limpar hidden></button>
+        </div>
+
+        <!-- role explícito: no celular as linhas viram cartões (display: grid), e alguns
+             leitores de tela deixam de ver a tabela quando o display muda. -->
+        <table class="tabela" role="table" data-tabela>
+          <caption class="visualmente-oculto" data-legenda></caption>
+          <thead role="rowgroup">
+            <tr role="row">
+              <th role="columnheader" scope="col" data-coluna="prato">Prato</th>
+              <th role="columnheader" scope="col" data-coluna="restaurante">Restaurante</th>
+              <th role="columnheader" scope="col" data-coluna="distancia">Distância</th>
+              <th role="columnheader" scope="col" data-coluna="preco" class="tabela__preco">Preço</th>
+            </tr>
+          </thead>
+          <tbody role="rowgroup" data-linhas></tbody>
+        </table>
+
+        <div class="vazio" data-vazio hidden>
+          <p class="vazio__titulo">Nenhum prato atende a tudo isso.</p>
+          <p>Tente desmarcar uma cozinha ou uma restrição.</p>
+        </div>
+      </section>
+      <section class="secao" id="favoritos" aria-labelledby="titulo-favoritos">
+        <h2 id="titulo-favoritos" tabindex="-1">Favoritos <span data-total-favoritos class="contador">0</span></h2>
+        <p class="secao__dica">Pratos que você salvou, inclusive de escolhas anteriores.</p>
+        <p class="mensagem-vazia" data-sem-favoritos>Use “Favoritar” em uma sugestão para guardar o prato aqui.</p>
+        <div class="grade-cartoes" data-favoritos></div>
+      </section>
+      <section class="secao" id="historico" aria-labelledby="titulo-historico">
+        <h2 id="titulo-historico">Histórico</h2>
+        <p class="secao__dica">As últimas 20 seleções geradas neste navegador, da mais recente para a mais antiga.</p>
+        <p class="mensagem-vazia" data-sem-historico>Quando você gerar sugestões, elas aparecerão aqui com a data e as escolhas utilizadas.</p>
+        <ol class="historico" data-historico></ol>
+      </section>
+      <p class="visualmente-oculto" role="status" data-aviso-favorito></p>
+      <p class="aviso-memoria" role="status" hidden data-aviso-memoria>O navegador bloqueou o armazenamento. As alterações desta visita podem se perder ao sair.</p>
+    </main>
+
+    <footer class="rodape">
+      <p>Prato Certo: projeto final de Desenvolvimento de Interfaces, CEUB, 2026.</p>
+      <p>
+        Os restaurantes e os pratos são exemplos fictícios, e a foto foi gerada por IA (imagem ilustrativa). Confirme
+        sempre com o restaurante se o prato atende à sua restrição.
+      </p>
+      <p>
+        Preferências, favoritos, histórico e tema ficam neste navegador. A localização do aparelho só é usada durante a visita.
+        <button type="button" class="link-botao" data-apagar>Apagar dados deste site</button>
+        <span aria-live="polite" data-apagado></span>
+      </p>
+    </footer>
+
+    <noscript>
+      <p class="sem-script">A tabela de pratos precisa de JavaScript ligado para funcionar.</p>
+    </noscript>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Entre ou crie sua conta no Prato Certo para salvar suas restrições e seus gostos." />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="theme-color" content="#0d0a0b" />
+    <link rel="stylesheet" href="./src/styles/fontes.css" />
+    <link rel="stylesheet" href="./src/styles/tokens.css" />
+    <link rel="stylesheet" href="./src/styles/base.css" />
+    <link rel="stylesheet" href="./src/styles/pagina.css" />
+    <link rel="stylesheet" href="./src/styles/edicao.css" />
+    <link rel="stylesheet" href="./src/styles/entrar.css" />
+    <title>Entrar · Prato Certo</title>
+  </head>
+  <body>
+    <a class="botao botao--primario pular-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <header class="topo">
+      <a class="marca" href="./">
+        <img src="./favicon.svg" alt="" width="32" height="32" />
+        Prato Certo
+      </a>
+      <a class="topo__voltar" href="./">
+        <svg class="icone" aria-hidden="true"><use href="./icons/icones.svg#voltar"></use></svg>
+        Voltar para os pratos
+      </a>
+    </header>
+
+    <main id="conteudo" class="entrar" tabindex="-1">
+      <div class="entrar__caixa" data-caixa>
+        <p class="rotulo">Sua conta</p>
+        <h1 data-titulo>Entrar</h1>
+        <p class="entrar__frase" data-frase>
+          Entre para salvar suas restrições e seus gostos e encontrá-los em qualquer aparelho.
+        </p>
+
+        <!-- Sem configuração em src/config.js, o formulário dá lugar ao aviso. -->
+        <div class="aviso" data-sem-login hidden>
+          <p>O login não está ligado nesta versão do site.</p>
+          <p>Você pode usar a página normalmente: suas escolhas ficam guardadas neste navegador.</p>
+        </div>
+
+        <!-- Quem já entrou não precisa do formulário. -->
+        <div data-ja-entrou hidden>
+          <p class="entrar__frase" data-ja-entrou-texto></p>
+          <div class="entrar__acoes">
+            <a class="botao botao--primario botao--grande" href="./">Ver os pratos</a>
+            <button type="button" class="botao botao--grande" data-sair>
+              <svg class="icone" aria-hidden="true"><use href="./icons/icones.svg#sair"></use></svg>
+              Sair
+            </button>
+          </div>
+        </div>
+
+        <div data-area-formulario hidden>
+          <div class="alternar" role="group" aria-label="O que você quer fazer">
+            <button type="button" class="alternar__opcao" data-modo="entrar" aria-pressed="true">Entrar</button>
+            <button type="button" class="alternar__opcao" data-modo="criar" aria-pressed="false">Criar conta</button>
+          </div>
+
+          <form class="formulario" novalidate data-formulario>
+            <div class="campo" data-campo-nome hidden>
+              <label for="nome">Seu nome <span class="campo__opcional">(opcional)</span></label>
+              <input id="nome" name="nome" type="text" autocomplete="given-name" maxlength="60" />
+            </div>
+
+            <div class="campo">
+              <label for="email">E-mail</label>
+              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required />
+            </div>
+
+            <div class="campo">
+              <label for="senha">Senha</label>
+              <div class="campo__senha">
+                <input
+                  id="senha"
+                  name="senha"
+                  type="password"
+                  autocomplete="current-password"
+                  minlength="6"
+                  required
+                  aria-describedby="dica-senha"
+                />
+                <button type="button" class="botao" data-mostrar-senha aria-pressed="false">Mostrar</button>
+              </div>
+              <p class="campo__dica" id="dica-senha">Pelo menos 6 caracteres.</p>
+            </div>
+
+            <p class="aviso aviso--erro" role="alert" data-erro hidden></p>
+
+            <button type="submit" class="botao botao--primario botao--grande" data-enviar>
+              <svg class="icone" aria-hidden="true"><use href="./icons/icones.svg#entrar"></use></svg>
+              <span data-enviar-texto>Entrar</span>
+            </button>
+          </form>
+        </div>
+
+        <!-- Conta criada, falta confirmar pelo e-mail. -->
+        <div data-confira hidden>
+          <p class="entrar__frase">
+            Enviamos um link para <strong data-confira-email></strong>. Clique nele para confirmar a conta: você
+            volta para os pratos já com a conta aberta.
+          </p>
+          <p class="campo__dica">Não chegou? Olhe também a caixa de spam e espere alguns minutos.</p>
+          <div class="entrar__acoes">
+            <button type="button" class="botao" data-voltar-entrar>Já confirmei: entrar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="entrar__foto">
+        <img class="foto-prato" src="./img/prato/prato-espaguete.jpg" alt="" width="1080" height="1080" />
+      </div>
+    </main>
+
+    <footer class="rodape">
+      <p>Prato Certo: projeto final de Desenvolvimento de Interfaces, CEUB, 2026.</p>
+      <p>
+        A conta guarda só o seu nome, o seu e-mail e as suas escolhas (restrições, gostos e bairro). A senha é
+        guardada pelo serviço de contas (Supabase), protegida, e nunca fica visível para nós.
+      </p>
+    </footer>
+
+    <noscript>
+      <p class="sem-script">Para entrar, o JavaScript precisa estar ligado.</p>
+    </noscript>
+
+    <script type="module" src="./src/entrar.js"></script>
+  </body>
+</html>
