@@ -1,0 +1,132 @@
+/* Extensão da paleta vinho e champanhe do Prato Certo. */
+:root {
+  --cor-fundo: #100d0f;
+  --cor-superficie: #1b1619;
+  --cor-superficie-2: #292026;
+  --cor-borda-suave: #45343c;
+  --cor-texto-suave: #c6babc;
+  --raio: 8px;
+  --largura-maxima: 1160px;
+  --espaco: clamp(1rem, 4vw, 3.5rem);
+}
+:root[data-tema='claro'] {
+  color-scheme: light;
+  --cor-fundo: #faf7f4;
+  --cor-superficie: #fffdfb;
+  --cor-superficie-2: #f3e9e8;
+  --cor-texto: #2e1a24;
+  --cor-texto-suave: #604f55;
+  --cor-primaria-clara: #922849;
+  --cor-destaque: #77501a;
+  --cor-borda: #89737c;
+  --cor-borda-suave: #d8c9cb;
+  --cor-foco: #1949a0;
+  --cor-sucesso: #235b3c;
+  --cor-sucesso-fundo: #e2f0e5;
+  --cor-erro: #a92731;
+  --cor-erro-fundo: #ffedef;
+  --sombra-leve: 0 1px 4px #67324819;
+}
+body { font-size: 1.0625rem; }
+.pular-link:not(:focus) { clip-path: inset(100%); }
+.topo { gap: 0 1.25rem; padding-block: .65rem; }
+.topo::before { background: var(--cor-fundo); opacity: .97; }
+.marca { font-size: 1rem; text-transform: none; gap: .6rem; }
+.marca img { width: 2.35rem; height: 2.35rem; }
+.topo__links { margin: 0; }
+.topo__links a { padding-inline: .7rem; font-size: .96rem; }
+.tema {
+  display: grid; place-items: center; width: 46px; height: 46px;
+  border: 1px solid var(--cor-borda); border-radius: 50%; background: var(--cor-superficie);
+  color: var(--cor-destaque); font: inherit; font-size: 1.45rem; cursor: pointer;
+}
+.tema__lua, [data-tema='claro'] .tema__sol { display: none; }
+[data-tema='claro'] .tema__lua { display: inline; }
+.capa {
+  position: relative; isolation: isolate; overflow: hidden;
+  background: radial-gradient(ellipse at 77% 55%, #63323c44, transparent 56%), var(--cor-fundo);
+  gap: 1.5rem; padding-block: clamp(2rem, 4vw, 4.5rem);
+}
+[data-tema='claro'] .capa { background: radial-gradient(ellipse at 77% 55%, #eccabc 0%, transparent 53%), var(--cor-fundo); }
+.localidade { display: flex; align-items: center; gap: .5rem; margin-bottom: 1.1rem; }
+.localidade .icone { width: 1.2rem; height: 1.2rem; }
+.capa h1 { font-size: clamp(2.2rem, 4.8vw, 4.75rem); max-width: none; letter-spacing: -.055em; }
+.capa h1 em { font-style: normal; color: var(--cor-destaque); }
+.capa__frase { font-size: clamp(1.05rem, 1.4vw, 1.23rem); max-width: 37ch; }
+.botao--grande { font-size: 1.05rem; min-height: 50px; }
+.atalho-catalogo { display: inline-flex; align-items: center; min-height: 48px; margin-inline: 1.1rem; color: var(--cor-texto); font-weight: 700; }
+.capa__foto {
+  position: relative; width: min(100%, 448px); aspect-ratio: 1;
+  display: grid; place-items: center;
+}
+.capa__foto::before, .capa__foto::after {
+  content: ''; position: absolute; inset: 2%; border: 1px solid var(--cor-borda-suave); border-radius: 50%; z-index: -1;
+}
+.capa__foto::after { inset: -2%; opacity: .55; }
+.capa__foto img { transform: scale(1.38); }
+.faixa-catalogo {
+  display: flex; justify-content: center; align-items: stretch;
+  padding: 1rem var(--espaco); border-block: 1px solid var(--cor-borda-suave);
+  background: var(--cor-superficie);
+}
+.faixa-catalogo div { display: flex; align-items: baseline; justify-content: center; gap: .6rem; padding-inline: clamp(.9rem, 4vw, 4rem); color: var(--cor-texto-suave); }
+.faixa-catalogo div + div { border-left: 1px solid var(--cor-borda-suave); }
+.faixa-catalogo strong { font-family: var(--fonte-display); font-size: 1.25rem; color: var(--cor-texto); }
+.escolhas { padding-block: 2rem 1.5rem; gap: 1rem; }
+.painel { padding: clamp(1rem, 2.3vw, 2rem); }
+.painel h2, .secao h2, .precos h2 { text-transform: none; font-size: clamp(1.35rem, 2.15vw, 2.05rem); }
+.painel__dica, .secao__dica, .secao__topo p { color: var(--cor-texto-suave); }
+.chip { font-size: 1rem; border-width: 1px; padding: .45em .95em; }
+.chip .icone { width: 1.15em; height: 1.15em; }
+.salvamento { font-size: 1rem; }
+.secao { padding: 2.25rem max(var(--espaco), calc((100% - var(--largura-maxima)) / 2)); border-top: 1px solid var(--cor-borda-suave); }
+.secao__topo { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; justify-content: space-between; align-items: center; margin-bottom: 1.1rem; }
+.secao__topo p { margin: 0; }
+.grade-cartoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: 1rem; }
+.cartao { display: flex; flex-direction: column; padding: 1.25rem; border-radius: var(--raio); border: 1px solid var(--cor-borda-suave); border-top: 3px solid var(--cor-primaria); background: var(--cor-superficie); }
+.cartao__cozinha { color: var(--cor-destaque); font-size: .875rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; margin-bottom: .6rem; }
+.cartao h3 { font-size: 1.35rem; }
+.cartao__descricao, .cartao__local { color: var(--cor-texto-suave); margin-bottom: .7rem; }
+.cartao__local .icone { width: 1em; height: 1em; display: inline-block; vertical-align: -.1em; margin-right: .25em; }
+.cartao .selos { margin: 0 0 1rem; }
+.cartao__fim { margin-top: auto; padding-top: .8rem; border-top: 1px solid var(--cor-borda-suave); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .25rem .75rem; }
+.cartao__fim strong { color: var(--cor-destaque); font-size: 1.2rem; }
+.favoritar { display: inline-flex; gap: .4rem; align-items: center; padding: .4rem .65rem; min-height: 44px; border-radius: var(--raio); border: 1px solid var(--cor-borda); background: transparent; color: var(--cor-texto); font: inherit; cursor: pointer; }
+.favoritar .icone { width: 1.2rem; color: var(--cor-primaria-clara); }
+.nota-alimentar { display: flex; align-items: flex-start; gap: .75rem; margin: 1.2rem 0 0; padding: 1rem; background: var(--cor-superficie); border-left: 3px solid var(--cor-destaque); color: var(--cor-texto-suave); }
+.nota-alimentar .icone { color: var(--cor-destaque); }
+.nota-alimentar + .grade-cartoes:not(:empty) { margin-top: 1rem; }
+.precos { border-top: 1px solid var(--cor-borda-suave); padding-block: 2.25rem; }
+.controle { min-width: 0; }
+.controle select { min-width: min(15rem,100%); }
+.contador { font-family: var(--fonte); font-size: 1rem; color: var(--cor-texto-suave); vertical-align: middle; }
+.mensagem-vazia { padding: 1rem; margin: 0; border: 1px dashed var(--cor-borda); border-radius: var(--raio); color: var(--cor-texto-suave); }
+.historico { list-style: none; margin: 0; padding: 0; }
+.historico > li { border-bottom: 1px solid var(--cor-borda-suave); padding: .9rem 0; }
+.historico time { color: var(--cor-destaque); font-weight: 700; }
+.historico p { color: var(--cor-texto-suave); margin: .3rem 0; }
+.historico ul { padding-left: 1.25rem; }
+.botao:disabled { cursor: default; color: var(--cor-texto-suave); background: var(--cor-superficie-2); border-color: var(--cor-borda); }
+.aviso-memoria { position: sticky; bottom: 0; background: var(--cor-erro-fundo); color: var(--cor-erro); padding: .75rem var(--espaco); margin: 0; }
+@media (min-width: 720px) {
+  .capa { grid-template-columns: 1.15fr .85fr; }
+}
+@media (max-width: 859px) {
+  .topo { position: static; }
+  [id] { scroll-margin-top: 1rem; }
+}
+@media (max-width: 719px) {
+  .topo { gap: .25rem .65rem; }
+  .tema { margin-left: auto; }
+  .topo nav { border-top: 1px solid var(--cor-borda-suave); }
+  .topo__links { justify-content: space-between; }
+  .topo__links a { font-size: .9rem; padding-inline: .25rem; }
+  .capa { grid-template-columns: 1fr; }
+  .capa__foto { width: min(65vw, 285px); justify-self: center; }
+  .capa h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
+  .capa__frase { margin-bottom: .9rem; }
+  .faixa-catalogo { padding-inline: .5rem; }
+  .faixa-catalogo div { flex: 1; flex-direction: column; align-items: center; gap: 0; padding-inline: .2rem; font-size: .9rem; }
+  .tabela tbody tr { grid-template-columns: minmax(0,1fr) auto; }
+  .atalho-catalogo { margin-inline: .6rem; }
+}
