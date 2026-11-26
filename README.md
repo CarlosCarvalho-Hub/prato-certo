@@ -8,12 +8,6 @@ Aplicação de recomendação de pratos e restaurantes fictícios de Brasília. 
 2. Se tiver Python 3 instalado no Windows, execute `py -m http.server 8000 --bind 127.0.0.1`. Em outros sistemas, use `python3` no lugar de `py`. Outra opção é abrir a pasta no VS Code e iniciar **Live Server**.
 3. Com Python, abra [Prato Certo no computador](http://127.0.0.1:8000/). Para encerrar, use Ctrl+C no terminal. Os módulos JavaScript precisam de um endereço HTTP ou HTTPS.
 
-## Publicar no seu GitHub Pages
-
-1. Crie um repositório na sua conta. Para uma conta gratuita, escolha um repositório público.
-2. Extraia o ZIP e envie o **conteúdo** para a raiz da branch `main`. Ao abrir o repositório, você deve ver `index.html` ao lado de `src/`, `img/` e `fonts/`. O nome do repositório pode ser diferente de `prato-certo`.
-3. Em **Settings → Pages → Build and deployment**, escolha **Deploy from a branch**, selecione **main** e **/(root)** e clique em **Save**.
-4. Quando o GitHub exibir **Visit site**, abra o endereço e use **Escolher preferências → Gerar sugestões**. Marque um favorito e atualize a página para conferir a entrega.
 
 A publicação depende de uma ação do titular do repositório. [Instruções oficiais do GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 
